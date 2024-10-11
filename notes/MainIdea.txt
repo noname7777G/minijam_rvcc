@@ -1,0 +1,6 @@
+Game jam idea
+2d top down shooter 
+Energy bar only
+Everything costs energy
+We design a small number of square setpeices with dividing walls, halls and rooms
+Each set piece will have designated possible spawns for the player, the enemies, pickups, and the end of the level.
