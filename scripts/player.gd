@@ -19,6 +19,8 @@ func get_user_input():
 	user_input.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	user_input = user_input.normalized()
 
+
+
 	sprint = Input.is_key_pressed(KEY_SHIFT) && stamina > 0 && !recovery
 
 func shoot(direction: Vector2):
