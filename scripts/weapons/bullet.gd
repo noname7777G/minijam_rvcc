@@ -1,10 +1,9 @@
 extends Area2D
-
 class_name Bullet
 
-var speed: float
 var velocity: Vector2
-var damage: int
+var speed: int
+var projectile_owner: Node2D
 
 func _ready() -> void:
 	pass
@@ -14,8 +13,8 @@ func _process(delta: float) -> void:
 	position += new_pos
 	$sprite.look_at(position + new_pos) #Do this better.
 	
-func _on_bullet_body_entered(body: Node2D):
-	if body != owner:
+func _on_bullet_body_entered(body: CharacterBody2D):
+	if body != projectile_owner:
 		queue_free()
-		body.queue_free()
+		body._on_bullet_body_entered()
 

@@ -1,60 +1,47 @@
 extends CharacterBody2D
-@export var bullet : PackedScene
 
-var MAX_SPEED = 400
-var ACCEL = 10
-var sprint_factor = 2
+#### EXPORT PROPERTIES ####
 
-var max_stamina = 100
-var stamina = max_stamina
-var sprint_cost = 30
-var sprint_recovery = 20
+@export var max_speed: float = 400
+@export var accel: float = 10
 
-var user_input: Vector2
-var sprint: bool
-var recovery: bool
+@export var max_energy: int = 100
 
-func get_user_input():
-	user_input.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	user_input.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	user_input = user_input.normalized()
+#### PRIVATE PROPERTIES ####
 
+var _user_movement_input: Vector2
 
+var _weapons = {
+	"auto_gun": base_weapon.new(),
+	"shotgun": base_weapon.new(),
+	"shuriken": base_weapon.new(),
+	"grenade": base_weapon.new(),
+	}
 
-	sprint = Input.is_key_pressed(KEY_SHIFT) && stamina > 0 && !recovery
+var _current_energy: int
 
-func shoot(direction: Vector2):
-	var b = bullet.instantiate()
-	owner.add_child(b)
-	
-	direction = direction - position
-	
-	b.position = $Marker2D.global_position
-	b.velocity = direction.normalized()
-	b.round_owner = "player"
+#### PRIVATE FUNCTIONS ####
+
+func _get_user_input():
+	_user_movement_input.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	_user_movement_input.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	_user_movement_input = _user_movement_input.normalized()
+
+	look_at(get_global_mouse_position())
+
+#### CALLBACKS ####
 
 func _process(delta: float) -> void:
-	get_user_input()
+	_get_user_input()
 	
-	var direction = get_global_mouse_position()
-	look_at(direction)
+	if Input.is_action_just_pressed("shoot"): #### fire gun here
+		pass
 	
-	if Input.is_action_just_pressed("shoot"):
-		shoot(direction)
-	
-	if sprint:
-		velocity = velocity.lerp(MAX_SPEED * user_input * sprint_factor, delta * ACCEL * sprint_factor)
-		stamina -= sprint_cost * delta
-		recovery = stamina < 0
-	else:
-		velocity = velocity.lerp(MAX_SPEED * user_input, delta * ACCEL)
-		if stamina < max_stamina:
-			stamina += sprint_recovery * delta
-		
-		if recovery:
-			recovery = !(stamina >= max_stamina && !Input.is_key_pressed(KEY_SHIFT))
+	velocity = velocity.lerp(max_speed * _user_movement_input, delta * accel)
 	
 	move_and_slide()
+
+#### SIGNALS ####
 
 func _on_bullet_body_entered(_body: Node2D) -> void:
 	print("I'm hit!")
