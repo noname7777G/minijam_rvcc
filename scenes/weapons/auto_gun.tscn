@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://diqsh45b5mt5v"]
+
+[ext_resource type="PackedScene" uid="uid://b0fdbiun0go7d" path="res://scenes/base_scenes/base_weapon.tscn" id="1_uf2y5"]
+
+[node name="Auto_gun" instance=ExtResource("1_uf2y5")]
+shot_cooldown = 0.2
+swap_cooldown = 0.3
+energy_cost = 3.0
+recoil = 5.0
+is_automatic = true

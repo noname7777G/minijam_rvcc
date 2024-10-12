@@ -1,15 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0fdbiun0go7d"]
+[gd_scene load_steps=3 format=3 uid="uid://b0fdbiun0go7d"]
 
 [ext_resource type="Script" path="res://scripts/weapons/base_weapon.gd" id="1_xu8u8"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_l30pw"]
 
 [node name="base_weapon" type="Node2D"]
 script = ExtResource("1_xu8u8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(26, 9.53674e-07)
+scale = Vector2(70, 10)
+texture = SubResource("PlaceholderTexture2D_l30pw")
 
 [node name="muzzle" type="Marker2D" parent="."]
+position = Vector2(61, 0)
 
 [node name="trajectory" type="Marker2D" parent="."]
+position = Vector2(1, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-855, -466)
+position = Vector2(61, 0)

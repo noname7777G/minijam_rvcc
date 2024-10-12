@@ -1,10 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://caatcv0ddtjg5"]
+[gd_scene load_steps=4 format=3 uid="uid://caatcv0ddtjg5"]
 
 [ext_resource type="Script" path="res://scripts/weapons/base_projectile.gd" id="1_k5de7"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t3pap"]
-radius = 3.0
-height = 10.0
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fus33"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nfxno"]
+size = Vector2(6, 10)
 
 [node name="Bullet" type="Area2D"]
 script = ExtResource("1_k5de7")
@@ -12,10 +13,13 @@ metadata/velocity = Vector2(0, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(0, -1.14441e-05)
-scale = Vector2(0.121094, 0.0768849)
+position = Vector2(3.8147e-06, 0)
+scale = Vector2(18, 30)
+texture = SubResource("PlaceholderTexture2D_fus33")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_t3pap")
+position = Vector2(-1.90735e-06, 0)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_nfxno")
 
 [connection signal="body_entered" from="." to="." method="_on_bullet_body_entered"]
