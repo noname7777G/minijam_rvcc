@@ -8,3 +8,5 @@ res://scripts/weapons/shotgun.gd
 res://scripts/weapons/shuriken.gd
 res://scripts/weapons/base_weapon.gd
 res://scenes/word.tscn
+res://scripts/player/player.gd
+res://scripts/player/player_weapons.gd
