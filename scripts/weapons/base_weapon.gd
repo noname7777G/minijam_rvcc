@@ -3,20 +3,19 @@ class_name base_weapon
 
 #### PUBLIC PROPERTIES ####
 
-var shot_cooldown: float
+@export var shot_cooldown: float
+@export var swap_cooldown: float
 
-var swap_cooldown: float
+@export var energy_cost: float
 
-var energy_cost: float
+@export var recoil: float
 
-var recoil: float
+@export var bullet_speed: float
+@export var bullet_spread: float
+@export var bullet_count: float
+@export var bullet_range: float
 
-var bullet_speed: float
-var bullet_spread: float
-var bullet_count: float
-var bullet_range: float
-
-var is_automatic: bool
+@export var is_automatic: bool
 
 #### PRIVATE PROPERTIES ####
 
