@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dba1kl37rcbuc"]
+
+[ext_resource type="PackedScene" uid="uid://caatcv0ddtjg5" path="res://scenes/base_scenes/base_projectile.tscn" id="1_rwkio"]
+
+[node name="shutgun_projectile" instance=ExtResource("1_rwkio")]
+damage = 5.0
+speed = 1000.0
+max_range = 600.0
+time_limit = 3.0

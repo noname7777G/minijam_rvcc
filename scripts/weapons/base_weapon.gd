@@ -65,7 +65,7 @@ func shoot(entity_velocity: Vector2):
 
 		projectile.reparent($"/root/World")
 	else:
-		var start_angle = -(_projectile_spread / 2)
+		var start_angle = _projectile_spread / 2
 		var between_angle = _projectile_spread / _projectile_count
 
 		var projectile_trajectory: Vector2
