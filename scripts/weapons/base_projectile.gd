@@ -43,18 +43,19 @@ func _process(delta: float) -> void:
 
 	_sprite.look_at(position + new_pos) #Do this better.
 	
-	if !is_zero_approx(_timer):
+	if !is_zero_approx(_timer) or _timer < 0:
 		_timer -= delta
 	else:
 		queue_free()
 	
-	if !is_zero_approx(_remaining_range):
+	if !is_zero_approx(_remaining_range) or _remaining_range < 0:
 		_remaining_range -= new_pos.length()
 	else:
 		queue_free()
 
 #### SIGNALS ####
 func _on_body_entered(body:Node2D) -> void:
+	print("hit something")
 	if body != _shooter:
 		queue_free()
 		var body_class = body.get_class()
