@@ -55,22 +55,17 @@ func swap_to():
 
 func shoot(entity_velocity: Vector2):
 	if !can_shoot:
-		print("can't fire yet")
 		return
 	
 	if _projectile_count == 1:
 		var projectile = projectile_scene.instantiate()
 	
-		projectile.initialize(_muzzle.global_position, entity_velocity, _trajectory.position)
 		add_child(projectile)
-		print("fired")
+		projectile.initialize(_muzzle.global_position, entity_velocity, _trajectory.global_position - global_position)
 
-		projectile.initialize(entity_velocity, _trajectory.position, _muzzle.global_position)
-
-		projectile.visible = true
 		projectile.reparent($"/root/World")
 	else:
-		var start_angle = -(_projectile_spread / 2)
+		var start_angle = _projectile_spread / 2
 		var between_angle = _projectile_spread / _projectile_count
 
 		var projectile_trajectory: Vector2
@@ -85,8 +80,7 @@ func shoot(entity_velocity: Vector2):
 			add_child(projectile)
 
 			projectile.initialize(_muzzle.global_position, entity_velocity, projectile_trajectory)
-			add_child(projectile)
-			projectile.reparent($"World")
+			projectile.reparent($"/root/World")
 	
 	_do_recoil()
 	

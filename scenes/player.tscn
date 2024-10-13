@@ -1,15 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcjs30ogm2vg"]
+[gd_scene load_steps=6 format=3 uid="uid://bcjs30ogm2vg"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_h6xcm"]
 [ext_resource type="Texture2D" uid="uid://daxqel3cb5go8" path="res://assets/icon.svg" id="2_bnj1d"]
 [ext_resource type="PackedScene" uid="uid://diqsh45b5mt5v" path="res://scenes/weapons/auto_gun.tscn" id="3_ttdxw"]
+[ext_resource type="PackedScene" uid="uid://dqsp7fwesgwir" path="res://scenes/weapons/shotgun.tscn" id="4_pchl6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8nql4"]
 radius = 70.3491
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("auto_gun_scene")]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("auto_gun_scene", "shotgun_scene")]
 script = ExtResource("1_h6xcm")
 auto_gun_scene = NodePath("Auto_gun")
+shotgun_scene = NodePath("shotgun")
 metadata/MAX_SPEED = 300.0
 metadata/ACCEL = 2.0
 
@@ -27,3 +29,6 @@ position_smoothing_speed = 10.0
 
 [node name="Auto_gun" parent="." instance=ExtResource("3_ttdxw")]
 position = Vector2(1, 50)
+
+[node name="shotgun" parent="." instance=ExtResource("4_pchl6")]
+position = Vector2(77.4782, -35.299)
