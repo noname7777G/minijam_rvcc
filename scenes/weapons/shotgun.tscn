@@ -1,12 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqsp7fwesgwir"]
+[gd_scene load_steps=5 format=3 uid="uid://bpwe53xbmkl7m"]
 
 [ext_resource type="PackedScene" uid="uid://b0fdbiun0go7d" path="res://scenes/base_scenes/base_weapon.tscn" id="1_i1igf"]
-[ext_resource type="PackedScene" uid="uid://b4ysrxvuy0q30" path="res://scenes/weapons/auto_gun_projectile.tscn" id="2_0yshu"]
+[ext_resource type="PackedScene" uid="uid://cu48yeg81cd4a" path="res://scenes/weapons/auto_gun_projectile.tscn" id="2_0yshu"]
+[ext_resource type="AudioStream" uid="uid://dflg60bxj01md" path="res://assets/Sounds/SFX/Weapons/Shotgunsfx/Shotgun2.mp3" id="3_aeo4s"]
+[ext_resource type="AudioStream" uid="uid://dvg0r6ucl8bof" path="res://assets/Sounds/SFX/Weapons/Shotgunsfx/Shotgun_shell.mp3" id="4_gp5qt"]
 
 [node name="shotgun" instance=ExtResource("1_i1igf")]
 _shot_cooldown = 0.7
 _swap_cooldown = 0.8
 _projectile_spread_deg = 90.0
 _projectile_count = 7
-_recoil = 100.0
+_recoil = 150.0
 projectile_scene = ExtResource("2_0yshu")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(39, 0)
+scale = Vector2(210, 30)
+
+[node name="muzzle" parent="." index="1"]
+position = Vector2(144, 0)
+
+[node name="AnimatedSprite2D" parent="." index="3"]
+position = Vector2(144, 0)
+
+[node name="Fire_sound" parent="." index="4"]
+stream = ExtResource("3_aeo4s")
+
+[node name="Secondary_sound" parent="." index="5"]
+stream = ExtResource("4_gp5qt")

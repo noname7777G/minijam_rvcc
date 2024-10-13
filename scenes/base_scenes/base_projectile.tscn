@@ -21,4 +21,6 @@ texture = SubResource("PlaceholderTexture2D_fus33")
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_nfxno")
 
+[node name="expire_sound" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
