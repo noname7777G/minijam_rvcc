@@ -25,7 +25,8 @@ var _remaining_range: float
 @export var on_expire_scene: PackedScene
 
 #### PUBLIC METHODS ####
-func initialize(init_velocity: Vector2, trajectory: Vector2):
+func initialize(init_position: Vector2, init_velocity: Vector2, trajectory: Vector2):
+	global_position = init_position
 	_initial_velocity = init_velocity	
 	_trajectory = trajectory
 	look_at(global_position + _trajectory)
@@ -60,9 +61,3 @@ func _on_body_entered(body:Node2D) -> void:
 
 		if body_class == "base_entity":
 			body.on_hit(damage)
-
-
-
-
-
-

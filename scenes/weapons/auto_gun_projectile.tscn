@@ -1,10 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4ysrxvuy0q30"]
+[gd_scene load_steps=2 format=3 uid="uid://cu48yeg81cd4a"]
 
 [ext_resource type="PackedScene" uid="uid://caatcv0ddtjg5" path="res://scenes/base_scenes/base_projectile.tscn" id="1_4pc6g"]
 
 [node name="auto_gun_projectile" instance=ExtResource("1_4pc6g")]
 damage = 5.0
-speed = 600.0
+speed = 1.0
 max_range = 1000.0
 time_limit = 10000.0
 
