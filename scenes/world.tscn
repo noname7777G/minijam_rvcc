@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dy3eucyvapp6c"]
+[gd_scene load_steps=4 format=3 uid="uid://dy3eucyvapp6c"]
 
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_etivi"]
 [ext_resource type="PackedScene" uid="uid://bcjs30ogm2vg" path="res://scenes/player.tscn" id="1_yofxk"]
 [ext_resource type="Texture2D" uid="uid://daxqel3cb5go8" path="res://assets/icon.svg" id="2_1nopr"]
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_etivi")
 
 [node name="player" parent="." instance=ExtResource("1_yofxk")]
 motion_mode = 1
