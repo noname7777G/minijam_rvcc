@@ -18,12 +18,17 @@ var can_swap: bool
 
 @export var _recoil: float
 
+@export var _secondary_sound_delay_ratio: float
+
 var _projectile_spread: float
 var _shot_timer: float
 var _swap_timer: float
+var _secondary_sound_delay
 
 @onready var _muzzle = $muzzle
 @onready var _trajectory = $trajectory
+@onready var _fire_sound = $Fire_sound
+@onready var _secondary_sound = $Secondary_sound
 
 #### ASSET/NODE EXPORTS ####
 @export var projectile_scene: PackedScene
@@ -34,6 +39,8 @@ func _ready():
 	_shot_timer = 0
 	_swap_timer = _swap_cooldown
 
+	_secondary_sound_delay = _shot_cooldown - (_shot_cooldown * _secondary_sound_delay_ratio)
+
 func _process(delta: float) -> void:
 	look_at(get_global_mouse_position())
 
@@ -43,6 +50,9 @@ func _process(delta: float) -> void:
 		can_swap = true
 
 	if is_selected:
+		if _shot_timer >= _secondary_sound_delay:
+			_secondary_sound.play()	
+
 		if _shot_timer >= 0:
 			_shot_timer -= delta
 		else:
@@ -69,6 +79,7 @@ func shoot(entity_velocity: Vector2):
 	if !can_shoot:
 		return
 
+	_fire_sound.play()
 	var unit_trajectory: Vector2 = _trajectory.global_position - global_position
 
 	if _projectile_count == 1:

@@ -58,9 +58,11 @@ func _get_user_input():
 	if _current_weapon.is_automatic:
 		if Input.is_action_pressed("shoot") && _current_weapon.can_shoot:
 			_current_weapon.shoot(velocity)
+			_current_energy -= _current_weapon.energy_cost
 	else:
-		if Input.is_action_just_pressed("shoot"): #### fire gun here
+		if Input.is_action_just_pressed("shoot"):
 			_current_weapon.shoot(velocity)
+			_current_energy -= _current_weapon.energy_cost
 
 func _do_energy_cost(delta):
 	_current_energy -= delta * base_energy_loss
@@ -75,6 +77,7 @@ func on_hit(damage: float):
 #### CALLBACKS ####
 func _ready():
 	_current_weapon = auto_gun_scene
+	_current_weapon.swap_to()
 	_current_energy = max_energy
 
 func _process(delta: float) -> void:

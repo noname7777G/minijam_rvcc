@@ -62,4 +62,12 @@ func _on_body_entered(body:Node2D) -> void:
 	
 	queue_free()
 	print("hit")
-	#body.on_hit(damage)
+
+	if body.has_method("on_hit"):
+		body.on_hit(damage)
+
+
+
+
+
+	
