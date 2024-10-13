@@ -15,14 +15,34 @@ extends CharacterBody2D
 
 #### PRIVATE PROPERTIES ####
 var _user_movement_input: Vector2
-
 var _current_energy: float
-
 var _current_weapon: base_weapon
+
+#### NODE/ASSET EXPORTS####
+@export var hit_sound: Resource
 
 #### PRIVATE FUNCTIONS ####
 func _swap_weapons():
-	if _current_weapon.can_swap:
+	if Input.is_action_pressed("swap_to_auto_gun"):
+		_current_weapon.swap_from()
+		_current_weapon = auto_gun_scene
+		_current_weapon.swap_to()
+
+	if Input.is_action_pressed("swap_to_shotgun"):
+		_current_weapon.swap_from()
+		_current_weapon = shotgun_scene
+		_current_weapon.swap_to()
+
+	if Input.is_action_pressed("swap_to_shuriken"):
+		#_current_weapon.swap_from()
+		#_current_weapon = shuriken_scene
+		#_current_weapon.swap_to()
+		pass
+
+	if Input.is_action_pressed("Swap_to_grenade"):
+		#_current_weapon.swap_from()
+		#_current_weapon = grenade_scene
+		#_current_weapon.swap_to()
 		pass
 
 func _get_user_input():
@@ -32,17 +52,8 @@ func _get_user_input():
 
 	look_at(get_global_mouse_position())
 
-	if Input.is_action_pressed("swap_to_auto_gun"):
-		_current_weapon = auto_gun_scene
-
-	if Input.is_action_pressed("swap_to_shotgun"):
-		_current_weapon = shotgun_scene
-
-	if Input.is_action_pressed("swap_to_shuriken"):
-		_current_weapon = shuriken_scene
-
-	if Input.is_action_pressed("Swap_to_grenade"):
-		_current_weapon = grenade_scene
+	if _current_weapon.can_swap:
+		_swap_weapons()
 
 	if _current_weapon.is_automatic:
 		if Input.is_action_pressed("shoot") && _current_weapon.can_shoot:
@@ -57,6 +68,10 @@ func _do_energy_cost(delta):
 	if !is_zero_approx(_user_movement_input.x) and !is_zero_approx(_user_movement_input.y):
 		_current_energy -= delta * movement_energy_loss
 
+#### PUBLIC FUNCTIONS ####
+func on_hit(damage: float):
+	_current_energy -= damage
+
 #### CALLBACKS ####
 func _ready():
 	_current_weapon = auto_gun_scene
@@ -70,6 +85,3 @@ func _process(delta: float) -> void:
 	_do_energy_cost(delta)
 	move_and_slide()
 
-#### SIGNALS ####
-func _on_bullet_body_entered(_body: Node2D) -> void:
-	print("I'm hit!")

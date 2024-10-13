@@ -8,7 +8,7 @@ energy_cost = 3.0
 is_automatic = true
 _shot_cooldown = 0.2
 _swap_cooldown = 0.3
-_recoil = 5.0
+_recoil = 20.0
 projectile_scene = ExtResource("2_yddto")
 
 [node name="Sprite2D" parent="." index="0"]

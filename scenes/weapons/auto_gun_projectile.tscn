@@ -5,7 +5,7 @@
 [node name="auto_gun_projectile" instance=ExtResource("1_4pc6g")]
 damage = 5.0
 speed = 3000.0
-max_range = 20000.0
+max_range = 2000.0
 time_limit = 20.0
 
 [node name="Sprite2D" parent="." index="0"]
