@@ -1,0 +1,14 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dn431jj13hu2a"]
+
+[ext_resource type="Texture2D" uid="uid://m8cks317dqs1" path="res://assets/Tilemaps/test_map.png" id="1_mo67a"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pirbr"]
+texture = ExtResource("1_mo67a")
+texture_region_size = Vector2i(60, 80)
+0:0/0 = 0
+0:1/0 = 0
+
+[resource]
+tile_size = Vector2i(60, 80)
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_pirbr")
