@@ -12,7 +12,6 @@ class_name base_projectile
 #### PUBLIC PROPERTIES ####
 
 #### PRIVATE PROPERTIES ####
-var _shooter: Node2D
 var _initial_velocity: Vector2
 var _trajectory: Vector2
 
@@ -30,8 +29,10 @@ func initialize(init_position: Vector2, init_velocity: Vector2, trajectory: Vect
 	_initial_velocity = init_velocity	
 	_trajectory = trajectory
 	look_at(global_position + _trajectory)
-
-	_shooter = owner.owner
+	
+	for grp_name in get_parent().get_parent().get_groups():
+		add_to_group(grp_name)
+	
 	_timer = time_limit
 	_remaining_range = max_range
 
@@ -55,10 +56,10 @@ func _process(delta: float) -> void:
 
 #### SIGNALS ####
 func _on_body_entered(body:Node2D) -> void:
-	if !body.is_in_group(_shooter.get_groups()[1]):
-		queue_free()
-		body.on_hit(damage)
-
-
-
-
+	for shooter_grp in get_groups():
+		if body.is_in_group(shooter_grp):
+			return
+	
+	queue_free()
+	print("hit")
+	#body.on_hit(damage)

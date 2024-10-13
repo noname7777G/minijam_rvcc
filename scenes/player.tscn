@@ -8,7 +8,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_8nql4"]
 radius = 70.3491
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("auto_gun_scene", "shotgun_scene")]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("auto_gun_scene", "shotgun_scene") groups=["PLAYER", "player"]]
 script = ExtResource("1_h6xcm")
 auto_gun_scene = NodePath("Auto_gun")
 shotgun_scene = NodePath("shotgun")

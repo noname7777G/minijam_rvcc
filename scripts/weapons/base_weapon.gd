@@ -13,11 +13,12 @@ var can_swap: bool
 @export var _shot_cooldown: float
 @export var _swap_cooldown: float
 
-@export var _projectile_spread: float
+@export var _projectile_spread_deg: float
 @export var _projectile_count: int = 1
 
 @export var _recoil: float
 
+var _projectile_spread: float
 var _shot_timer: float
 var _swap_timer: float
 
@@ -28,9 +29,10 @@ var _swap_timer: float
 @export var projectile_scene: PackedScene
 
 #### CALLBACKS ####
-func _init():
+func _ready():
+	_projectile_spread = (PI / 180) * _projectile_spread_deg
 	_shot_timer = 0
-	_swap_timer = 0
+	_swap_timer = _swap_cooldown
 
 func _process(delta: float) -> void:
 	look_at(get_global_mouse_position())
@@ -81,17 +83,18 @@ func shoot(entity_velocity: Vector2):
 		var start_angle = -(_projectile_spread / 2)
 		var between_angle = _projectile_spread / (_projectile_count - 1)
 
-
 		for p in range(_projectile_count):
 			var current_shot_angle = start_angle + (between_angle * p)
+			var shot_unit_trajectory = unit_trajectory
 
-			unit_trajectory.x = (unit_trajectory.x * cos(current_shot_angle)) - (unit_trajectory.y * sin(current_shot_angle))
-			unit_trajectory.y = (unit_trajectory.x * sin(current_shot_angle)) + (unit_trajectory.y * cos(current_shot_angle))
+			#Bellow is a rotation matrix; TODO: make utils file and figure out why this denormalizes the vector
+			shot_unit_trajectory.x = (shot_unit_trajectory.x * cos(current_shot_angle)) - (shot_unit_trajectory.y * sin(current_shot_angle))
+			shot_unit_trajectory.y = (shot_unit_trajectory.x * sin(current_shot_angle)) + (shot_unit_trajectory.y * cos(current_shot_angle))
 
 			var projectile = projectile_scene.instantiate()
 			add_child(projectile)
-
-			projectile.initialize(_muzzle.global_position, entity_velocity, unit_trajectory)
+			
+			projectile.initialize(_muzzle.global_position, entity_velocity, shot_unit_trajectory.normalized())
 			projectile.reparent($"/root/World")
 	
 	_do_recoil()
