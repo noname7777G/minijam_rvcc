@@ -31,34 +31,45 @@ func initialize(init_position: Vector2, init_velocity: Vector2, trajectory: Vect
 	_trajectory = trajectory
 	look_at(global_position + _trajectory)
 
-#### CALLBACKS ####
-func _init():
 	_shooter = owner
 	_timer = time_limit
 	_remaining_range = max_range
 
+#### CALLBACKS ####
 func _process(delta: float) -> void:
-	var new_pos = (_trajectory * speed * delta) + _initial_velocity
+	var new_pos = (_trajectory * speed * delta) + (_initial_velocity * delta)
 	position += new_pos
 
 	_sprite.look_at(position + new_pos) #Do this better.
 	
-	if !is_zero_approx(_timer) or _timer < 0:
+	if _timer >= 0:
 		_timer -= delta
 	else:
 		queue_free()
 	
-	if !is_zero_approx(_remaining_range) or _remaining_range < 0:
-		_remaining_range -= new_pos.length()
+	if _remaining_range >= 0:
+		_remaining_range -= new_pos.length() * delta
 	else:
 		queue_free()
 
 #### SIGNALS ####
 func _on_body_entered(body:Node2D) -> void:
 	print("hit something")
-	if body != _shooter:
-		queue_free()
-		var body_class = body.get_class()
 
-		if body_class == "base_entity":
-			body.on_hit(damage)
+	if body == _shooter:
+		return
+
+	var body_class = body.get_class()
+
+	if body_class == "base_entity":
+		body.on_hit(damage)
+
+	queue_free()
+
+
+
+
+
+
+
+
