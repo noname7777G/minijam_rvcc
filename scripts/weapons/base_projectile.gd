@@ -26,7 +26,7 @@ var _remaining_range: float
 
 #### PUBLIC METHODS ####
 func initialize(init_velocity: Vector2, trajectory: Vector2):
-	_initial_velocity = init_velocity	
+	_initial_velocity = init_velocity
 	_trajectory = trajectory
 	look_at(global_position + _trajectory)
 
@@ -60,9 +60,3 @@ func _on_body_entered(body:Node2D) -> void:
 
 		if body_class == "base_entity":
 			body.on_hit(damage)
-
-
-
-
-
-

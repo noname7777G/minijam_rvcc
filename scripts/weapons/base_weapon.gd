@@ -60,8 +60,8 @@ func shoot(entity_velocity: Vector2):
 	
 	if _projectile_count == 1:
 		var projectile = projectile_scene.instantiate()
-	
-		projectile.initialize(entity_velocity, _trajectory.position)
+
+		projectile.initialize(entity_velocity, _trajectory.position, _muzzle.global_position)
 
 		projectile.visible = true
 		projectile.reparent($"/World")
