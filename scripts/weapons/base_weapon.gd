@@ -5,8 +5,8 @@ class_name base_weapon
 @export var energy_cost: float
 @export var is_automatic: bool = false
 
-var can_shoot: bool
-var can_swap: bool
+var can_shoot: bool = true
+var can_swap: bool = true
 
 #### PRIVATE PROPERTIES ####
 @export var _shot_cooldown: float
@@ -28,8 +28,8 @@ var _swap_timer: float
 
 #### CALLBACKS ####
 func _init():
-	_shot_timer = 0
-	_swap_timer = 0
+	_shot_timer = _shot_cooldown
+	_swap_timer = _swap_cooldown
 
 func _process(delta: float) -> void:
 	look_at(get_global_mouse_position())
