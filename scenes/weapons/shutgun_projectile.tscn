@@ -5,5 +5,5 @@
 [node name="shutgun_projectile" instance=ExtResource("1_rwkio")]
 damage = 5.0
 speed = 1000.0
-max_range = 600.0
+max_range = 1.0
 time_limit = 3.0

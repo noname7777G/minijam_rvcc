@@ -30,6 +30,7 @@ scale = Vector2(3.03516, 3.03516)
 texture = ExtResource("2_1nopr")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("4_0tces")]
+visible = false
 script = SubResource("GDScript_gmhti")
 
 [node name="Button" parent="CanvasLayer" index="0"]

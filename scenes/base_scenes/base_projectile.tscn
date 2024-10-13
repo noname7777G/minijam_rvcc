@@ -5,7 +5,7 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fus33"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nfxno"]
-size = Vector2(6, 10)
+size = Vector2(11.6667, 6.66667)
 
 [node name="base_projectile" type="Area2D"]
 script = ExtResource("1_k5de7")
@@ -13,12 +13,11 @@ metadata/velocity = Vector2(0, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(3.8147e-06, 0)
-scale = Vector2(18, 30)
+position = Vector2(1.90735e-06, 0)
+scale = Vector2(35, 19)
 texture = SubResource("PlaceholderTexture2D_fus33")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.90735e-06, 0)
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_nfxno")
 

@@ -20,9 +20,29 @@ var _current_energy: float
 
 var _current_weapon: base_weapon
 
+
 #### PRIVATE FUNCTIONS ####
 func _swap_weapons():
-	if _current_weapon.can_swap:
+	if Input.is_action_pressed("swap_to_auto_gun"):
+		_current_weapon.swap_from()
+		_current_weapon = auto_gun_scene
+		_current_weapon.swap_to()
+
+	if Input.is_action_pressed("swap_to_shotgun"):
+		_current_weapon.swap_from()
+		_current_weapon = shotgun_scene
+		_current_weapon.swap_to()
+
+	if Input.is_action_pressed("swap_to_shuriken"):
+		#_current_weapon.swap_from()
+		#_current_weapon = shuriken_scene
+		#_current_weapon.swap_to()
+		pass
+
+	if Input.is_action_pressed("Swap_to_grenade"):
+		#_current_weapon.swap_from()
+		#_current_weapon = grenade_scene
+		#_current_weapon.swap_to()
 		pass
 
 func _get_user_input():
@@ -32,17 +52,8 @@ func _get_user_input():
 
 	look_at(get_global_mouse_position())
 
-	if Input.is_action_pressed("swap_to_auto_gun"):
-		_current_weapon = auto_gun_scene
-
-	if Input.is_action_pressed("swap_to_shotgun"):
-		_current_weapon = shotgun_scene
-
-	if Input.is_action_pressed("swap_to_shuriken"):
-		_current_weapon = shuriken_scene
-
-	if Input.is_action_pressed("Swap_to_grenade"):
-		_current_weapon = grenade_scene
+	if _current_weapon.can_swap:
+		_swap_weapons()
 
 	if _current_weapon.is_automatic:
 		if Input.is_action_pressed("shoot") && _current_weapon.can_shoot:

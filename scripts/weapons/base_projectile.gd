@@ -31,16 +31,17 @@ func initialize(init_position: Vector2, init_velocity: Vector2, trajectory: Vect
 	_trajectory = trajectory
 	look_at(global_position + _trajectory)
 
-	_shooter = owner
+	_shooter = owner.owner
 	_timer = time_limit
 	_remaining_range = max_range
+
 
 #### CALLBACKS ####
 func _process(delta: float) -> void:
 	var new_pos = (_trajectory * speed * delta) + (_initial_velocity * delta)
 	position += new_pos
 
-	_sprite.look_at(position + new_pos) #Do this better.
+	_sprite.look_at(position + _trajectory) #Do this better.
 	
 	if _timer >= 0:
 		_timer -= delta
@@ -54,21 +55,9 @@ func _process(delta: float) -> void:
 
 #### SIGNALS ####
 func _on_body_entered(body:Node2D) -> void:
-	print("hit something")
-
-	if body == _shooter:
-		return
-
-	var body_class = body.get_class()
-
-	if body_class == "base_entity":
+	if !body.is_in_group(_shooter.get_groups()[1]):
+		queue_free()
 		body.on_hit(damage)
-
-	queue_free()
-
-
-
-
 
 
 
