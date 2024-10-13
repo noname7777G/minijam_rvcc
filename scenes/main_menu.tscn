@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://0pb0epcpe8xp"]
+
+[ext_resource type="Script" path="res://scripts/start_menu.gd" id="1_ek4gx"]
+[ext_resource type="FontFile" uid="uid://dtepjvvym7ve6" path="res://assets/Fonts/SixtyfourConvergence-Regular-VariableFont_BLED,SCAN,XELA,YELA.ttf" id="2_sdx10"]
+[ext_resource type="Texture2D" uid="uid://ilkycd3dopus" path="res://assets/Turt.png" id="3_o8xrt"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_ek4gx")
+
+[node name="Button" type="Button" parent="."]
+z_index = 2
+offset_left = 486.0
+offset_top = 532.0
+offset_right = 574.0
+offset_bottom = 572.0
+scale = Vector2(2.13422, 2.28778)
+theme_override_colors/font_hover_pressed_color = Color(0.513678, 1, 0.48175, 1)
+theme_override_colors/font_color = Color(0.196078, 0.92549, 0, 1)
+theme_override_fonts/font = ExtResource("2_sdx10")
+action_mode = 0
+button_mask = 3
+text = "START"
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+z_index = 1
+offset_left = 160.0
+offset_top = 43.0
+offset_right = 368.0
+offset_bottom = 83.0
+scale = Vector2(4, 5.396)
+theme_override_colors/default_color = Color(0.941176, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_sdx10")
+text = "Out Of Shells"
+fit_content = true
+autowrap_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -4.0
+offset_top = -2.0
+offset_right = 1916.0
+offset_bottom = 1918.0
+scale = Vector2(0.600874, 0.338976)
+texture = ExtResource("3_o8xrt")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
