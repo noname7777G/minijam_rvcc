@@ -1,7 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dy3eucyvapp6c"]
+[gd_scene load_steps=6 format=3 uid="uid://dy3eucyvapp6c"]
 
 [ext_resource type="PackedScene" uid="uid://bcjs30ogm2vg" path="res://scenes/player.tscn" id="1_yofxk"]
 [ext_resource type="Texture2D" uid="uid://daxqel3cb5go8" path="res://assets/icon.svg" id="2_1nopr"]
+[ext_resource type="PackedScene" uid="uid://0pb0epcpe8xp" path="res://scenes/main_menu.tscn" id="4_0tces"]
+[ext_resource type="PackedScene" uid="uid://crdvhrhffgbp7" path="res://scenes/music_player.tscn" id="6_fxbad"]
+
+[sub_resource type="GDScript" id="GDScript_gmhti"]
+script/source = "extends CanvasLayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="World" type="Node2D"]
 
@@ -12,3 +28,14 @@ motion_mode = 1
 z_index = -1
 scale = Vector2(3.03516, 3.03516)
 texture = ExtResource("2_1nopr")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("4_0tces")]
+script = SubResource("GDScript_gmhti")
+
+[node name="Button" parent="CanvasLayer" index="0"]
+button_mask = 1
+
+[node name="AudioStreamPlayer2D" parent="CanvasLayer" instance=ExtResource("6_fxbad")]
+
+[editable path="player"]
+[editable path="CanvasLayer"]
