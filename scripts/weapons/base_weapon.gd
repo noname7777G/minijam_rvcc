@@ -34,12 +34,12 @@ func _init():
 func _process(delta: float) -> void:
 	look_at(get_global_mouse_position())
 
-	if !is_zero_approx(_swap_timer):
+	if _swap_timer <= 0:
 		_swap_timer -= delta
 	else:
 		can_swap = true
 
-	if !is_zero_approx(_shot_timer):
+	if _shot_timer >= 0:
 		_shot_timer -= delta
 	else:
 		can_shoot = true
@@ -55,7 +55,7 @@ func swap_to():
 
 func shoot(entity_velocity: Vector2):
 	if !can_shoot:
-		print("oof")
+		print("can't fire yet")
 		return
 	
 	if _projectile_count == 1:
@@ -63,9 +63,12 @@ func shoot(entity_velocity: Vector2):
 	
 		projectile.initialize(_muzzle.global_position, entity_velocity, _trajectory.position)
 		add_child(projectile)
+		print("fired")
+
+		projectile.initialize(entity_velocity, _trajectory.position, _muzzle.global_position)
 
 		projectile.visible = true
-		projectile.reparent($"/World")
+		projectile.reparent($"/root/World")
 	else:
 		var start_angle = -(_projectile_spread / 2)
 		var between_angle = _projectile_spread / _projectile_count
@@ -79,6 +82,7 @@ func shoot(entity_velocity: Vector2):
 			projectile_trajectory.y = sin(current_shot_angle)
 
 			var projectile = projectile_scene.instantiate()
+			add_child(projectile)
 
 			projectile.initialize(_muzzle.global_position, entity_velocity, projectile_trajectory)
 			add_child(projectile)

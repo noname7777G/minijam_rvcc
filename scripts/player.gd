@@ -45,7 +45,6 @@ func _get_user_input():
 		_current_weapon = grenade_scene
 
 	if Input.is_action_just_pressed("shoot"): #### fire gun here
-		print("bang")
 		_current_weapon.shoot(velocity)
 
 func _do_energy_cost(delta):
