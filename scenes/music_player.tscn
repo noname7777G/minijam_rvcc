@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://crdvhrhffgbp7"]
+
+[ext_resource type="AudioStream" uid="uid://dbdxolgfq675i" path="res://assets/Sounds/Music/MinijamSong 1.mp3" id="1_rkf0x"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_rkf0x")
+autoplay = true
