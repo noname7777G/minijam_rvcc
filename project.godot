@@ -15,7 +15,6 @@ run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://assets/icon.svg"
 
-<<<<<<< Updated upstream
 [autoload]
 
 MusicPlayer="res://scenes/music_player.tscn"
@@ -23,11 +22,7 @@ MusicPlayer="res://scenes/music_player.tscn"
 [global_group]
 
 PLAYER=""
-=======
-[global_group]
-
 _global_enemies="All enemies in the game."
->>>>>>> Stashed changes
 
 [input]
 
