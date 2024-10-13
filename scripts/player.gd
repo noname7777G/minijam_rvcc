@@ -45,7 +45,8 @@ func _get_user_input():
 		_current_weapon = grenade_scene
 
 	if Input.is_action_just_pressed("shoot"): #### fire gun here
-		pass
+		print("bang")
+		_current_weapon.shoot(velocity)
 
 func _do_energy_cost(delta):
 	_current_energy -= delta * base_energy_loss
@@ -54,6 +55,10 @@ func _do_energy_cost(delta):
 		_current_energy -= delta * movement_energy_loss
 
 #### CALLBACKS ####
+func _ready():
+	_current_weapon = auto_gun_scene
+	_current_energy = max_energy
+
 func _process(delta: float) -> void:
 
 	_get_user_input()

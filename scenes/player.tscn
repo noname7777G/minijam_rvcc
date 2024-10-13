@@ -1,23 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcjs30ogm2vg"]
+[gd_scene load_steps=5 format=3 uid="uid://bcjs30ogm2vg"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_h6xcm"]
 [ext_resource type="Texture2D" uid="uid://daxqel3cb5go8" path="res://assets/icon.svg" id="2_bnj1d"]
+[ext_resource type="PackedScene" uid="uid://diqsh45b5mt5v" path="res://scenes/weapons/auto_gun.tscn" id="3_ttdxw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8nql4"]
-radius = 29.0172
+radius = 70.3491
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("auto_gun_scene")]
 script = ExtResource("1_h6xcm")
-max_speed = null
-accel = null
-max_energy = null
-base_energy_loss = null
-movement_energy_loss = null
+auto_gun_scene = NodePath("Auto_gun")
 metadata/MAX_SPEED = 300.0
 metadata/ACCEL = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.4375, 0.4375)
+rotation = -1.5708
+scale = Vector2(1.03906, 1.03906)
 texture = ExtResource("2_bnj1d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -26,3 +24,6 @@ shape = SubResource("CircleShape2D_8nql4")
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
+
+[node name="Auto_gun" parent="." instance=ExtResource("3_ttdxw")]
+position = Vector2(1, 50)

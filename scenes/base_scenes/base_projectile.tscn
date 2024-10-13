@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nfxno"]
 size = Vector2(6, 10)
 
-[node name="Bullet" type="Area2D"]
+[node name="base_projectile" type="Area2D"]
 script = ExtResource("1_k5de7")
 metadata/velocity = Vector2(0, 0)
 
@@ -22,4 +22,4 @@ position = Vector2(-1.90735e-06, 0)
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_nfxno")
 
-[connection signal="body_entered" from="." to="." method="_on_bullet_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
