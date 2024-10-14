@@ -19,20 +19,38 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if state == "search":
-		pass
+	# For testing purposes, comment out when not in use
+	var U = Input.is_action_just_pressed("ui_up")
+	var L = Input.is_action_just_pressed("ui_left")
+	var R = Input.is_action_just_pressed("ui_right")
+	var DO = Input.is_action_just_pressed("ui_accept")
 	
-	if state == "lunge":
-		pass
+	if U and !_animation_player.is_playing():
+		_animation_player.play("move_forward")
 		
-	if state == "turn":
-		pass
+	if L and !_animation_player.is_playing():
+		_animation_player.play("turn_left")
 		
-	if state == "move":
-		pass
+	if R and !_animation_player.is_playing():
+		_animation_player.play("turn_right")
+		
+	if DO and !_animation_player.is_playing():
+		_animation_player.play("lunge")
 	
 func on_hit(damage: float):
 	health -= damage
+
+func tween_position(movement_difference: Vector2, duration: float):
+	var tween : Tween = get_tree().create_tween()
+	
+	movement_difference = movement_difference.rotated(_body.rotation)
+	tween.tween_property(_body, "global_position", _body.global_position + movement_difference, duration)
+
+func tween_rotation(movement_difference: float, duration: float):
+	var tween : Tween = get_tree().create_tween()
+	
+	movement_difference = deg_to_rad(movement_difference)
+	tween.tween_property(_body, "rotation", _body.rotation + movement_difference, duration)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	pass # Replace with function body.
