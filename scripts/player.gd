@@ -8,10 +8,7 @@ extends CharacterBody2D
 @export var base_energy_loss: float = 1
 @export var movement_energy_loss: float = 1
 
-@export var auto_gun_scene: base_weapon
-@export var shotgun_scene: base_weapon
-@export var shuriken_scene: base_weapon
-@export var grenade_scene: base_weapon
+@export var weapon_scenes: Array[base_weapon] = []
 
 #### PRIVATE PROPERTIES ####
 var _user_movement_input: Vector2
@@ -23,27 +20,13 @@ var _current_weapon: base_weapon
 
 #### PRIVATE FUNCTIONS ####
 func _swap_weapons():
-	if Input.is_action_pressed("swap_to_auto_gun"):
-		_current_weapon.swap_from()
-		_current_weapon = auto_gun_scene
-		_current_weapon.swap_to()
+	for weapon in weapon_scenes:
+		if Input.is_action_just_pressed(weapon.name):
+			_current_weapon.swap_from()
+			_current_weapon = weapon
+			_current_weapon.swap_to()
 
-	if Input.is_action_pressed("swap_to_shotgun"):
-		_current_weapon.swap_from()
-		_current_weapon = shotgun_scene
-		_current_weapon.swap_to()
-
-	if Input.is_action_pressed("swap_to_shuriken"):
-		#_current_weapon.swap_from()
-		#_current_weapon = shuriken_scene
-		#_current_weapon.swap_to()
-		pass
-
-	if Input.is_action_pressed("Swap_to_grenade"):
-		#_current_weapon.swap_from()
-		#_current_weapon = grenade_scene
-		#_current_weapon.swap_to()
-		pass
+			break #Fucking tab based languages
 
 func _get_user_input():
 	_user_movement_input.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -67,7 +50,7 @@ func _get_user_input():
 func _do_energy_cost(delta):
 	_current_energy -= delta * base_energy_loss
 
-	if !is_zero_approx(_user_movement_input.x) and !is_zero_approx(_user_movement_input.y):
+	if !is_zero_approx(_user_movement_input.x) and !is_zero_approx(_user_movement_input.y): #Change this
 		_current_energy -= delta * movement_energy_loss
 
 #### PUBLIC FUNCTIONS ####
@@ -76,7 +59,7 @@ func on_hit(damage: float):
 
 #### CALLBACKS ####
 func _ready():
-	_current_weapon = auto_gun_scene
+	_current_weapon = weapon_scenes[0]
 	_current_weapon.swap_to()
 	_current_energy = max_energy
 

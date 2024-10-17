@@ -8,10 +8,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_8nql4"]
 radius = 70.3491
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("auto_gun_scene", "shotgun_scene") groups=["PLAYER", "player"]]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("weapon_scenes") groups=["PLAYER", "player"]]
 script = ExtResource("1_h6xcm")
-auto_gun_scene = NodePath("Auto_gun")
-shotgun_scene = NodePath("shotgun")
+weapon_scenes = [NodePath("swap_to_auto_gun"), NodePath("swap_to_shotgun")]
 metadata/MAX_SPEED = 300.0
 metadata/ACCEL = 2.0
 
@@ -27,9 +26,9 @@ shape = SubResource("CircleShape2D_8nql4")
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
-[node name="Auto_gun" parent="." instance=ExtResource("3_ttdxw")]
+[node name="swap_to_auto_gun" parent="." instance=ExtResource("3_ttdxw")]
 position = Vector2(1, 50)
 
-[node name="shotgun" parent="." instance=ExtResource("4_pchl6")]
+[node name="swap_to_shotgun" parent="." instance=ExtResource("4_pchl6")]
 visible = false
 position = Vector2(59, 49)
